@@ -574,6 +574,9 @@ export abstract class SpineBase<
      * @private
      */
     createMesh(slot: ISlot, attachment: IMeshAttachment) {
+        if (!attachment.region && attachment.sequence) {
+            attachment.sequence.apply(slot, attachment as any);
+        }
         let region = attachment.region;
 
         if (slot.hackAttachment === attachment) {
