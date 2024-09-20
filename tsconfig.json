@@ -16,7 +16,6 @@
         "declaration": false,
         "declarationMap": false,
         "allowSyntheticDefaultImports": true,
-        "importsNotUsedAsValues": "error",
         "lib": [
             "es6",
             "dom"

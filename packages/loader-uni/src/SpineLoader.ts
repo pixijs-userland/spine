@@ -21,6 +21,9 @@ class UniBinaryParser implements ISkeletonParser {
         if (ver === SPINE_VERSION.VER40 || ver === SPINE_VERSION.VER41) {
             parser = new spine41.SkeletonBinary(new spine41.AtlasAttachmentLoader(atlas));
         }
+        if (ver === SPINE_VERSION.VER42) {
+            console.warn("4.2 Support is experimental and may not work as expected");
+        }
         if (!parser) {
             const error = `Unsupported version of spine model ${version}, please update pixi-spine`;
 

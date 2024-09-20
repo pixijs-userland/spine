@@ -7,6 +7,8 @@ export enum SPINE_VERSION {
     VER38 = 38,
     VER40 = 40,
     VER41 = 41,
+    VER42 = 42,
+
 }
 
 /**

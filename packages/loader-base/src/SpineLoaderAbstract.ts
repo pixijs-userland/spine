@@ -1,5 +1,5 @@
 import { ISkeletonData, ISkeletonParser, TextureAtlas } from '@pixi-spine/base';
-import { AssetExtension, checkExtension, LoadAsset, Loader, LoaderParserPriority } from '@pixi/assets';
+import { AssetExtension, checkExtension, ResolvedAsset, Loader, LoaderParserPriority } from '@pixi/assets';
 import { BaseTexture, extensions, ExtensionType, settings, Texture, utils } from '@pixi/core';
 import { makeSpineTextureAtlasLoaderFunctionFromPixiLoaderObject } from './atlasLoader';
 
@@ -54,7 +54,7 @@ export abstract class SpineLoaderAbstract<SKD extends ISkeletonData> {
                 // #endregion
 
                 // #region Parsing spine data
-                testParse(asset: unknown, options: LoadAsset): Promise<boolean> {
+                testParse(asset: unknown, options: ResolvedAsset): Promise<boolean> {
                     const isJsonSpineModel = checkExtension(options.src, '.json') && isJson(asset);
                     const isBinarySpineModel = checkExtension(options.src, '.skel') && isBuffer(asset);
 

@@ -1,5 +1,5 @@
 import { TextureAtlas } from '@pixi-spine/base';
-import { type AssetExtension, LoaderParserPriority, LoadAsset, Loader, checkExtension } from '@pixi/assets';
+import { type AssetExtension, LoaderParserPriority, ResolvedAsset, Loader, checkExtension } from '@pixi/assets';
 import { BaseTexture, extensions, ExtensionType, settings, Texture, utils } from '@pixi/core';
 import type { ISpineMetadata } from './SpineLoaderAbstract';
 
@@ -31,14 +31,16 @@ const spineTextureAtlasLoader: AssetExtension<RawAtlas | TextureAtlas, ISpineMet
             return txt as RawAtlas;
         },
 
-        testParse(asset: unknown, options: LoadAsset): Promise<boolean> {
+        testParse(asset: unknown, options: ResolvedAsset): Promise<boolean> {
             const isExtensionRight = checkExtension(options.src, '.atlas');
             const isString = typeof asset === 'string';
 
             return Promise.resolve(isExtensionRight && isString);
         },
 
-        async parse(asset: RawAtlas, options: LoadAsset, loader: Loader): Promise<TextureAtlas> {
+        async parse(asset: RawAtlas, options: ResolvedAsset, loader: Loader): Promise<TextureAtlas> {
+            console.log("booooooooooooooom ", options)
+
             const metadata: ISpineMetadata = options.data;
             let basePath = utils.path.dirname(options.src);
 
