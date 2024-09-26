@@ -1,6 +1,6 @@
 {
   "name": "@pixi-spine/loader-uni",
-  "version": "4.0.4",
+  "version": "4.0.5-alpha.0",
   "description": "Pixi integration with EsotericSoftware Spine, big, contains all runtimes",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
@@ -51,12 +51,12 @@
   },
   "homepage": "https://github.com/pixijs/pixi-spine/#readme",
   "devDependencies": {
+    "@pixi-spine/base": "^4.0.5-alpha.0",
+    "@pixi-spine/loader-base": "^4.0.5-alpha.0",
     "@pixi-spine/rollup-config": "*",
-    "@pixi-spine/base": "^4.0.4",
-    "@pixi-spine/loader-base": "^4.0.4",
-    "@pixi-spine/runtime-3.7": "^4.0.4",
-    "@pixi-spine/runtime-3.8": "^4.0.4",
-    "@pixi-spine/runtime-4.1": "^4.0.4"
+    "@pixi-spine/runtime-3.7": "^4.0.5-alpha.0",
+    "@pixi-spine/runtime-3.8": "^4.0.5-alpha.0",
+    "@pixi-spine/runtime-4.1": "^4.0.5-alpha.0"
   },
   "nx": {}
 }

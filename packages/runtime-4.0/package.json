@@ -1,6 +1,6 @@
 {
   "name": "@pixi-spine/runtime-4.0",
-  "version": "4.0.4",
+  "version": "4.0.5-alpha.0",
   "description": "Pixi runtime for spine 4.0 models",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
@@ -49,8 +49,8 @@
   "license": "SEE SPINE-LICENSE",
   "homepage": "https://github.com/pixijs/pixi-spine/#readme",
   "devDependencies": {
-    "@pixi-spine/rollup-config": "*",
-    "@pixi-spine/base": "^4.0.4"
+    "@pixi-spine/base": "^4.0.5-alpha.0",
+    "@pixi-spine/rollup-config": "*"
   },
   "nx": {}
 }
