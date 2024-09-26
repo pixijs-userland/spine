@@ -1,6 +1,6 @@
 {
   "name": "@pixi-spine/runtime-4.1",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "Pixi runtime for spine 4.1 models",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
@@ -20,14 +20,11 @@
       "@pixi-spine/base": "PIXI.spine"
     }
   },
-  "peerDependencies": {
-    "@pixi-spine/base": "^4.0.0",
-    "@pixi/core": "^7.0.0"
-  },
   "scripts": {
     "build": "run-p build:*",
     "build:rollup": "rollup -c rollup.config.mjs --silent",
     "build:types": "rimraf compile && tsc -p tsconfig-api.json && api-extractor run",
+    "clean": "rimraf lib dist compile index.d.ts",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix"
   },
@@ -52,6 +49,8 @@
   "license": "SEE SPINE-LICENSE",
   "homepage": "https://github.com/pixijs/pixi-spine/#readme",
   "devDependencies": {
-    "@pixi-spine/rollup-config": "*"
-  }
+    "@pixi-spine/rollup-config": "*",
+    "@pixi-spine/base": "^4.0.4"
+  },
+  "nx": {}
 }

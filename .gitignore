@@ -40,3 +40,7 @@ packages/*/index.d.ts
 
 # ignore the npmrc
 .npmrc
+.nx
+
+# lerna logs
+lerna-debug.log

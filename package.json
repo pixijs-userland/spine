@@ -1,9 +1,9 @@
 {
   "name": "pixi-spine-parent",
-  "version": "3.0.0",
+  "private": true,
   "description": "Parent package for pixi-spine",
-  "main": "index.js",
   "scripts": {
+    "clean": "lerna run clean",
     "build": "lerna run build",
     "build:types": "lerna run build:types",
     "build:rollup": "lerna run build:rollup",
@@ -29,7 +29,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "install": "^0.13.0",
-    "lerna": "^6.4.0",
+    "lerna": "^8.1.8",
     "npm": "^8.0.0",
     "npm-run-all": "^4.1.5",
     "prepend": "=1.0.2",

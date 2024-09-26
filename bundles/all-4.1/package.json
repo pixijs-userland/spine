@@ -24,24 +24,16 @@
     }
   },
   "dependencies": {
-    "@pixi-spine/base": "^4.0.3",
-    "@pixi-spine/loader-4.1": "^4.0.3",
+    "@pixi-spine/base": "^4.0.4",
+    "@pixi-spine/loader-4.1": "^4.0.4",
     "@pixi-spine/loader-base": "^4.0.4",
-    "@pixi-spine/runtime-4.1": "^4.0.3"
-  },
-  "peerDependencies": {
-    "@pixi/assets": "^7.0.0",
-    "@pixi/core": "^7.0.0",
-    "@pixi/display": "^7.0.0",
-    "@pixi/graphics": "^7.0.0",
-    "@pixi/mesh": "^7.0.0",
-    "@pixi/mesh-extras": "^7.0.0",
-    "@pixi/sprite": "^7.0.0"
+    "@pixi-spine/runtime-4.1": "^4.0.4"
   },
   "scripts": {
     "build": "run-p build:*",
     "build:rollup": "rollup -c rollup.config.mjs --silent",
     "build:types": "rimraf compile && tsc -p tsconfig-api.json && api-extractor run",
+    "clean": "rimraf lib dist compile index.d.ts",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix"
   },
@@ -77,5 +69,6 @@
   "homepage": "https://github.com/pixijs/pixi-spine/#readme",
   "devDependencies": {
     "@pixi-spine/rollup-config": "*"
-  }
+  },
+  "nx": {}
 }

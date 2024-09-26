@@ -21,14 +21,14 @@
     }
   },
   "peerDependencies": {
-    "@pixi-spine/base": "^4.0.0",
-    "@pixi/assets": " ^7.0.0",
-    "@pixi/core": "^7.0.0"
+    "@pixi/assets": " ^7.4.2",
+    "@pixi/core": "^7.4.2"
   },
   "scripts": {
     "build": "run-p build:*",
     "build:rollup": "rollup -c rollup.config.mjs --silent",
     "build:types": "rimraf compile && tsc -p tsconfig-api.json && api-extractor run && node ../../scripts/injectGlobalMixins",
+    "clean": "rimraf lib dist compile index.d.ts",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix"
   },
@@ -52,6 +52,8 @@
   },
   "homepage": "https://github.com/pixijs/pixi-spine/#readme",
   "devDependencies": {
-    "@pixi-spine/rollup-config": "*"
-  }
+    "@pixi-spine/rollup-config": "*",
+    "@pixi-spine/base": "^4.0.4"
+  },
+  "nx": {}
 }

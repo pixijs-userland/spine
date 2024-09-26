@@ -1,51 +1,33 @@
 {
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "build:types",
-          "build:rollup",
-          "lint",
-          "lint:fix",
-          "test"
-        ]
-      }
+    "targetDefaults": {
+        "build": {
+            "dependsOn": ["^build"],
+            "outputs": [
+                "{projectRoot}/lib",
+                "{projectRoot}/dist",
+                "{projectRoot}/types.d.ts"
+            ],
+            "cache": true
+        },
+        "build:types": {
+            "dependsOn": ["^build:types"],
+            "outputs": ["{projectRoot}/types.d.ts"],
+            "cache": true
+        },
+        "build:rollup": {
+            "dependsOn": ["^build:rollup"],
+            "outputs": ["{projectRoot}/lib", "{projectRoot}/dist"],
+            "cache": true
+        },
+        "test": {
+            "dependsOn": ["build"],
+            "cache": true
+        },
+        "lint": {
+            "cache": true
+        },
+        "lint:fix": {
+            "cache": true
+        }
     }
-  },
-  "targetDefaults": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "{projectRoot}/lib",
-        "{projectRoot}/dist",
-        "{projectRoot}/types.d.ts"
-      ]
-    },
-    "build:types": {
-      "dependsOn": [
-        "^build:types"
-      ],
-      "outputs": [
-        "{projectRoot}/types.d.ts"
-      ]
-    },
-    "build:rollup": {
-      "dependsOn": [
-        "^build:rollup"
-      ],
-      "outputs": [
-        "{projectRoot}/lib",
-        "{projectRoot}/dist"
-      ]
-    },
-    "test": {
-      "dependsOn": [
-        "build"
-      ]
-    }
-  }
 }

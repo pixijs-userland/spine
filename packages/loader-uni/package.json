@@ -1,6 +1,6 @@
 {
   "name": "@pixi-spine/loader-uni",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "Pixi integration with EsotericSoftware Spine, big, contains all runtimes",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
@@ -23,24 +23,11 @@
       "@pixi-spine/runtime-4.1": "PIXI.spine41"
     }
   },
-  "peerDependencies": {
-    "@pixi-spine/base": "^4.0.0",
-    "@pixi-spine/loader-base": "^4.0.0",
-    "@pixi-spine/runtime-3.7": "^4.0.0",
-    "@pixi-spine/runtime-3.8": "^4.0.0",
-    "@pixi-spine/runtime-4.1": "^4.0.0",
-    "@pixi/assets": " ^7.0.0",
-    "@pixi/core": "^7.0.0",
-    "@pixi/display": "^7.0.0",
-    "@pixi/graphics": "^7.0.0",
-    "@pixi/mesh": "^7.0.0",
-    "@pixi/mesh-extras": "^7.0.0",
-    "@pixi/sprite": "^7.0.0"
-  },
   "scripts": {
     "build": "run-p build:*",
     "build:rollup": "rollup -c rollup.config.mjs --silent",
     "build:types": "rimraf compile && tsc -p tsconfig-api.json && api-extractor run && node ../../scripts/injectGlobalMixins",
+    "clean": "rimraf lib dist compile index.d.ts",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix"
   },
@@ -64,6 +51,12 @@
   },
   "homepage": "https://github.com/pixijs/pixi-spine/#readme",
   "devDependencies": {
-    "@pixi-spine/rollup-config": "*"
-  }
+    "@pixi-spine/rollup-config": "*",
+    "@pixi-spine/base": "^4.0.4",
+    "@pixi-spine/loader-base": "^4.0.4",
+    "@pixi-spine/runtime-3.7": "^4.0.4",
+    "@pixi-spine/runtime-3.8": "^4.0.4",
+    "@pixi-spine/runtime-4.1": "^4.0.4"
+  },
+  "nx": {}
 }

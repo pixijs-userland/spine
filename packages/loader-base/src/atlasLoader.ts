@@ -39,8 +39,6 @@ const spineTextureAtlasLoader: AssetExtension<RawAtlas | TextureAtlas, ISpineMet
         },
 
         async parse(asset: RawAtlas, options: ResolvedAsset, loader: Loader): Promise<TextureAtlas> {
-            console.log("booooooooooooooom ", options)
-
             const metadata: ISpineMetadata = options.data;
             let basePath = utils.path.dirname(options.src);
 

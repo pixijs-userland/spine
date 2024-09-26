@@ -1,57 +1,56 @@
 {
-	"name": "@pixi-spine/runtime-3.8",
-	"version": "4.0.3",
-	"description": "Pixi runtime for spine 3.8 models",
-	"main": "lib/index.js",
-	"module": "lib/index.mjs",
-	"types": "./index.d.ts",
-	"exports": {
-		".": {
-			"import": "./lib/index.mjs",
-			"require": "./lib/index.js",
-			"types": "./index.d.ts"
-		}
-	},
-	"extensionConfig": {
-		"namespace": "PIXI.spine38",
-		"bundle": "dist/runtime-3.8.js",
-		"bundleModule": "dist/runtime-3.8.mjs",
-		"globals": {
-			"@pixi-spine/base": "PIXI.spine"
-		}
-	},
-	"peerDependencies": {
-		"@pixi-spine/base": "^4.0.0",
-		"@pixi/core": "^7.0.0"
-	},
-	"scripts": {
-		"build": "run-p build:*",
-		"build:rollup": "rollup -c rollup.config.mjs --silent",
-		"build:types": "rimraf compile && tsc -p tsconfig-api.json && api-extractor run",
-		"lint": "eslint src/**/*.ts",
-		"lint:fix": "eslint src/**/*.ts --fix"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/pixijs/pixi-spine.git"
-	},
-	"files": [
-		"lib",
-		"dist",
-		"index.d.ts"
-	],
-	"keywords": [
-		"pixi.js",
-		"pixi",
-		"spine"
-	],
-	"author": "Ivan Igorevich Popelyshev <ivan.popelyshev@gmail.com>",
-	"bugs": {
-		"url": "https://github.com/pixijs/pixi-spine/issues"
-	},
-	"license": "SEE SPINE-LICENSE",
-	"homepage": "https://github.com/pixijs/pixi-spine/#readme",
-	"devDependencies": {
-		"@pixi-spine/rollup-config": "*"
-	}
+  "name": "@pixi-spine/runtime-3.8",
+  "version": "4.0.4",
+  "description": "Pixi runtime for spine 3.8 models",
+  "main": "lib/index.js",
+  "module": "lib/index.mjs",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.js",
+      "types": "./index.d.ts"
+    }
+  },
+  "extensionConfig": {
+    "namespace": "PIXI.spine38",
+    "bundle": "dist/runtime-3.8.js",
+    "bundleModule": "dist/runtime-3.8.mjs",
+    "globals": {
+      "@pixi-spine/base": "PIXI.spine"
+    }
+  },
+  "scripts": {
+    "build": "run-p build:*",
+    "build:rollup": "rollup -c rollup.config.mjs --silent",
+    "build:types": "rimraf compile && tsc -p tsconfig-api.json && api-extractor run",
+    "clean": "rimraf lib dist compile index.d.ts",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixijs/pixi-spine.git"
+  },
+  "files": [
+    "lib",
+    "dist",
+    "index.d.ts"
+  ],
+  "keywords": [
+    "pixi.js",
+    "pixi",
+    "spine"
+  ],
+  "author": "Ivan Igorevich Popelyshev <ivan.popelyshev@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/pixijs/pixi-spine/issues"
+  },
+  "license": "SEE SPINE-LICENSE",
+  "homepage": "https://github.com/pixijs/pixi-spine/#readme",
+  "devDependencies": {
+    "@pixi-spine/rollup-config": "*",
+    "@pixi-spine/base": "^4.0.4"
+  },
+  "nx": {}
 }

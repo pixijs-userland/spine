@@ -1,6 +1,6 @@
 {
   "name": "@pixi-spine/loader-4.0",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "Pixi loader middleware for spine 4.0 models",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
@@ -21,14 +21,11 @@
       "@pixi-spine/loader-base": "PIXI.spine"
     }
   },
-  "peerDependencies": {
-    "@pixi-spine/loader-base": "^4.0.0",
-    "@pixi-spine/runtime-4.0": "^4.0.0"
-  },
   "scripts": {
     "build": "run-p build:*",
     "build:rollup": "rollup -c rollup.config.mjs --silent",
     "build:types": "rimraf compile && tsc -p tsconfig-api.json && api-extractor run && node ../../scripts/injectGlobalMixins",
+    "clean": "rimraf lib dist compile index.d.ts",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix"
   },
@@ -52,6 +49,9 @@
   },
   "homepage": "https://github.com/pixijs/pixi-spine/#readme",
   "devDependencies": {
-    "@pixi-spine/rollup-config": "*"
-  }
+    "@pixi-spine/rollup-config": "*",
+    "@pixi-spine/loader-base": "^4.0.0",
+    "@pixi-spine/runtime-4.0": "^4.0.0"
+  },
+  "nx": {}
 }
