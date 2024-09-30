@@ -25,9 +25,10 @@
     "build": "run-p build:*",
     "build:rollup": "rollup -c rollup.config.mjs --silent",
     "build:types": "rimraf compile && tsc -p tsconfig-api.json && api-extractor run && node ../../scripts/injectGlobalMixins",
-    "clean": "rimraf lib dist compile index.d.ts",
+    "clean": "rimraf lib dist compile index.d.ts *.tgz",
     "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint src/**/*.ts --fix"
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "testBundle": "npm run build && npm pack"
   },
   "repository": {
     "type": "git",
@@ -50,8 +51,8 @@
   "homepage": "https://github.com/pixijs/pixi-spine/#readme",
   "devDependencies": {
     "@pixi-spine/rollup-config": "*",
-    "@pixi-spine/loader-base": "^4.0.0",
-    "@pixi-spine/runtime-4.1": "^4.0.0"
+    "@pixi-spine/loader-base": "^4.0.4",
+    "@pixi-spine/runtime-4.1": "^4.0.4"
   },
   "nx": {}
 }

@@ -8,7 +8,6 @@ export enum SPINE_VERSION {
     VER40 = 40,
     VER41 = 41,
     VER42 = 42,
-
 }
 
 /**
@@ -29,6 +28,9 @@ export function detectSpineVersion(version: string): SPINE_VERSION {
     }
     if (ver3 === '4.1') {
         return SPINE_VERSION.VER41;
+    }
+    if (ver3 === '4.2') {
+        return SPINE_VERSION.VER42;
     }
     // try parse old versions with 3.7
     if (verNum < SPINE_VERSION.VER37) {

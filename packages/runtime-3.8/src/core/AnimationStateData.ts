@@ -1,5 +1,5 @@
 import type { SkeletonData } from './SkeletonData';
-import type { IAnimation, IAnimationStateData, Map } from '@pixi-spine/base';
+import type { IAnimation, IAnimationStateData, StringMap } from '@pixi-spine/base';
 import type { Animation } from './Animation';
 
 /**
@@ -7,7 +7,7 @@ import type { Animation } from './Animation';
  */
 export class AnimationStateData implements IAnimationStateData<SkeletonData, Animation> {
     skeletonData: SkeletonData;
-    animationToMixTime: Map<number> = {};
+    animationToMixTime: StringMap<number> = {};
     defaultMix = 0;
 
     constructor(skeletonData: SkeletonData) {

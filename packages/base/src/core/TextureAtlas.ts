@@ -1,7 +1,8 @@
-import { Texture, SCALE_MODES, MIPMAP_MODES, ALPHA_MODES, Rectangle } from '@pixi/core';
-import { TextureRegion, TextureWrap, TextureFilter, filterFromString } from './TextureRegion';
-import type { Map, Disposable } from './Utils';
+import { ALPHA_MODES, MIPMAP_MODES, Rectangle, SCALE_MODES, Texture } from '@pixi/core';
+import { filterFromString, TextureFilter, TextureRegion, TextureWrap } from './TextureRegion';
+
 import type { BaseTexture } from '@pixi/core';
+import type { Disposable, StringMap } from './Utils';
 
 class RegionFields {
     x = 0;
@@ -63,7 +64,7 @@ export class TextureAtlas implements Disposable {
         return region;
     }
 
-    addTextureHash(textures: Map<Texture>, stripExtension: boolean) {
+    addTextureHash(textures: StringMap<Texture>, stripExtension: boolean) {
         for (const key in textures) {
             if (textures.hasOwnProperty(key)) {
                 this.addTexture(stripExtension && key.indexOf('.') !== -1 ? key.substr(0, key.lastIndexOf('.')) : key, textures[key]);
@@ -83,7 +84,7 @@ export class TextureAtlas implements Disposable {
         const reader = new TextureAtlasReader(atlasText);
         const entry = new Array<string>(4);
         let page: TextureAtlasPage = null;
-        const pageFields: Map<Function> = {};
+        const pageFields: StringMap<Function> = {};
         let region: RegionFields = null;
 
         pageFields.size = () => {
@@ -105,7 +106,7 @@ export class TextureAtlas implements Disposable {
             page.pma = entry[1] == 'true';
         };
 
-        const regionFields: Map<Function> = {};
+        const regionFields: StringMap<Function> = {};
 
         regionFields.xy = () => {
             // Deprecated, use bounds.

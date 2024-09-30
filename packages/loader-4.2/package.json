@@ -1,0 +1,58 @@
+{
+  "name": "@pixi-spine/loader-4.2",
+  "version": "4.0.4",
+  "description": "Pixi loader middleware for spine 4.2 models",
+  "main": "lib/index.js",
+  "module": "lib/index.mjs",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.js",
+      "types": "./index.d.ts"
+    }
+  },
+  "extensionConfig": {
+    "namespace": "PIXI.spine",
+    "bundle": "dist/loader-4.2.js",
+    "bundleModule": "dist/loader-4.2.mjs",
+    "globals": {
+      "@pixi-spine/runtime-4.2": "PIXI.spine42",
+      "@pixi-spine/loader-base": "PIXI.spine"
+    }
+  },
+  "scripts": {
+    "build": "run-p build:*",
+    "build:rollup": "rollup -c rollup.config.mjs --silent",
+    "build:types": "rimraf compile && tsc -p tsconfig-api.json && api-extractor run && node ../../scripts/injectGlobalMixins",
+    "clean": "rimraf lib dist compile index.d.ts *.tgz",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "testBundle": "npm run build && npm pack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixijs/pixi-spine.git"
+  },
+  "files": [
+    "lib",
+    "dist",
+    "*.d.ts"
+  ],
+  "keywords": [
+    "pixi.js",
+    "pixi",
+    "spine"
+  ],
+  "author": "Ivan Igorevich Popelyshev <ivan.popelyshev@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/pixijs/pixi-spine/issues"
+  },
+  "homepage": "https://github.com/pixijs/pixi-spine/#readme",
+  "devDependencies": {
+    "@pixi-spine/rollup-config": "*",
+    "@pixi-spine/loader-base": "^4.0.4",
+    "@pixi-spine/runtime-4.2": "^4.0.4"
+  },
+  "nx": {}
+}

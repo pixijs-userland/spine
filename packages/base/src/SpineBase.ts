@@ -1,14 +1,17 @@
+import { DRAW_MODES, Polygon, Rectangle, Texture, Transform, utils } from '@pixi/core';
+import { Container, DisplayObject } from '@pixi/display';
+import { Graphics } from '@pixi/graphics';
+import { SimpleMesh } from '@pixi/mesh-extras';
+import { Sprite } from '@pixi/sprite';
 import { AttachmentType } from './core/AttachmentType';
+import { Physics } from './core/ISkeleton';
 import { TextureRegion } from './core/TextureRegion';
 import { MathUtils } from './core/Utils';
+import { detectSpineVersion, SPINE_VERSION } from './core/versions';
+import { settings } from './settings';
+
 import type { IAnimationState, IAnimationStateData } from './core/IAnimation';
 import type { IAttachment, IClippingAttachment, IMeshAttachment, IRegionAttachment, ISkeleton, ISkeletonData, ISlot, IVertexAttachment } from './core/ISkeleton';
-import { DRAW_MODES, Rectangle, Polygon, Transform, Texture, utils } from '@pixi/core';
-import { Container, DisplayObject } from '@pixi/display';
-import { Sprite } from '@pixi/sprite';
-import { SimpleMesh } from '@pixi/mesh-extras';
-import { Graphics } from '@pixi/graphics';
-import { settings } from './settings';
 import type { ISpineDebugRenderer } from './SpineDebugRenderer';
 
 const tempRgb = [0, 0, 0];
@@ -60,7 +63,7 @@ export abstract class SpineBase<
         Skeleton extends ISkeleton,
         SkeletonData extends ISkeletonData,
         AnimationState extends IAnimationState,
-        AnimationStateData extends IAnimationStateData
+        AnimationStateData extends IAnimationStateData,
     >
     extends Container
     implements GlobalMixins.Spine
@@ -227,18 +230,19 @@ export abstract class SpineBase<
     update(dt: number) {
         // Limit delta value to avoid animation jumps
         const delayLimit = this.delayLimit;
+        const version = detectSpineVersion(this.spineData.version);
 
         if (dt > delayLimit) dt = delayLimit;
 
         this.state.update(dt);
-        this.state.apply(this.skeleton);
 
+        this.state.apply(this.skeleton);
         // check we haven't been destroyed via a spine event callback in state update
         if (!this.skeleton) {
             return;
         }
 
-        this.skeleton.updateWorldTransform();
+        this.skeleton.updateWorldTransform(version === SPINE_VERSION.VER42 && Physics.update);
 
         const slots = this.skeleton.slots;
 

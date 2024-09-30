@@ -44,3 +44,7 @@ packages/*/index.d.ts
 
 # lerna logs
 lerna-debug.log
+
+
+#local bundles for testing
+**/*.tgz

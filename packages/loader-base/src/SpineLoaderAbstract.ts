@@ -1,7 +1,7 @@
-import { ISkeletonData, ISkeletonParser, TextureAtlas } from '@pixi-spine/base';
-import { AssetExtension, checkExtension, ResolvedAsset, Loader, LoaderParserPriority } from '@pixi/assets';
+import { AssetExtension, checkExtension, Loader, LoaderParserPriority, ResolvedAsset } from '@pixi/assets';
 import { BaseTexture, extensions, ExtensionType, settings, Texture, utils } from '@pixi/core';
 import { makeSpineTextureAtlasLoaderFunctionFromPixiLoaderObject } from './atlasLoader';
+import { ISkeletonData, ISkeletonParser, TextureAtlas } from '@pixi-spine/base';
 
 type SPINEJSON = any;
 type SPINEBINARY = ArrayBuffer;
@@ -29,7 +29,7 @@ export abstract class SpineLoaderAbstract<SKD extends ISkeletonData> {
 
     public installLoader(): any {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
-        console.log("installLoader");
+        console.log('installLoader');
         const spineAdapter = this;
         const spineLoaderExtension: AssetExtension<SPINEJSON | SPINEBINARY | ISpineResource<SKD>, ISpineMetadata> = {
             extension: ExtensionType.Asset,
@@ -42,12 +42,10 @@ export abstract class SpineLoaderAbstract<SKD extends ISkeletonData> {
 
                 // #region Downloading skel buffer data
                 test(url) {
-                    console.log("test", url);
                     return checkExtension(url, '.skel');
                 },
 
                 async load<SPINEBINARY>(url: string): Promise<SPINEBINARY> {
-                    console.log("load", url);
                     const response = await settings.ADAPTER.fetch(url);
 
                     const buffer = await response.arrayBuffer();
@@ -63,14 +61,11 @@ export abstract class SpineLoaderAbstract<SKD extends ISkeletonData> {
 
                     // From 6.x loader. If the atlas is strictly false we bail
                     const isMetadataAngry = options.data?.spineAtlas === false;
-                    console.log("testParse", asset, options.src, isJsonSpineModel, isMetadataAngry);
 
                     return Promise.resolve((isJsonSpineModel && !isMetadataAngry) || isBinarySpineModel);
                 },
 
                 async parse(asset: SPINEJSON | SPINEBINARY, loadAsset, loader): Promise<ISpineResource<SKD>> {
-                    console.log("parse", asset, loadAsset, loader);
-
                     const fileExt = utils.path.extname(loadAsset.src).toLowerCase();
                     const fileName = utils.path.basename(loadAsset.src, fileExt);
                     let basePath = utils.path.dirname(loadAsset.src);
@@ -149,7 +144,6 @@ export abstract class SpineLoaderAbstract<SKD extends ISkeletonData> {
         } as AssetExtension<SPINEJSON | SPINEBINARY | ISpineResource<SKD>, ISpineMetadata>;
 
         extensions.add(spineLoaderExtension);
-        console.log("installLoader extension added", extensions);
 
         return spineLoaderExtension;
     }

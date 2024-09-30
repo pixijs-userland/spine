@@ -1,5 +1,5 @@
 import type { ISkeleton, ISkeletonData } from './ISkeleton';
-import type { Map } from './Utils';
+import type { StringMap } from './Utils';
 
 // Those enums were moved from Animation.ts of spine 3.8 and 4.0
 
@@ -83,7 +83,7 @@ export interface IAnimationState<AnimationStateData extends IAnimationStateData 
  */
 export interface IAnimationStateData<SkeletonData extends ISkeletonData = ISkeletonData, Animation extends IAnimation = IAnimation> {
     skeletonData: SkeletonData;
-    animationToMixTime: Map<number>;
+    animationToMixTime: StringMap<number>;
     defaultMix: number;
     setMix(fromName: string, toName: string, duration: number): void;
     setMixWith(from: Animation, to: Animation, duration: number): void;

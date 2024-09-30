@@ -1,9 +1,10 @@
+import { Color, StringMap, Vector2 } from './Utils';
+
+import type { BLEND_MODES, Matrix } from '@pixi/core';
 import type { AttachmentType } from './AttachmentType';
 import type { IAnimation, IEventData } from './IAnimation';
 import type { IIkConstraintData, IPathConstraintData, ITransformConstraintData } from './IConstraint';
-import type { Color, Vector2, Map } from './Utils';
 import type { TextureRegion } from './TextureRegion';
-import type { BLEND_MODES, Matrix } from '@pixi/core';
 
 // This enum was moved from BoneData.ts of spine 3.7, 3.8 and 4.0
 
@@ -22,9 +23,9 @@ export enum TransformMode {
  * @public
  */
 export interface IBone {
-    data: IBoneData;
-    matrix: Matrix;
     active: boolean;
+    data: IBoneData;
+    matrix?: Matrix;
 }
 
 /**
@@ -32,7 +33,7 @@ export interface IBone {
  */
 export interface ISkin {
     name: string;
-    attachments: Array<Map<IAttachment>>;
+    attachments: Array<StringMap<IAttachment>>;
 
     getAttachment(slotIndex: number, name: string): IAttachment | null;
 }
@@ -188,7 +189,7 @@ export interface ISkeleton<SkeletonData extends ISkeletonData = ISkeletonData, B
     data: SkeletonData;
     x: number; // added for debug purposes
     y: number; // added for debug purposes
-    updateWorldTransform(): void;
+    updateWorldTransform(physics?: Physics): void;
     setToSetupPose(): void;
     findSlotIndex(slotName: string): number;
     getAttachmentByName(slotName: string, attachmentName: string): IAttachment;
@@ -250,4 +251,22 @@ export interface ISkeletonData<
     findIkConstraint(constraintName: string): IkConstraintData | null;
     findTransformConstraint(constraintName: string): TransformConstraintData | null;
     findPathConstraint(constraintName: string): PathConstraintData | null;
+}
+
+/** Determines how physics and other non-deterministic updates are applied. */
+/**
+ * @public
+ */
+export enum Physics {
+    /** Physics are not updated or applied. */
+    none,
+
+    /** Physics are reset to the current pose. */
+    reset,
+
+    /** Physics are updated and the pose from physics is applied. */
+    update,
+
+    /** Physics are not updated but the pose from physics is applied. */
+    pose
 }

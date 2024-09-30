@@ -22,6 +22,7 @@
       "@pixi-spine/runtime-3.8": "PIXI.spine38",
       "@pixi-spine/runtime-4.0": "PIXI.spine40",
       "@pixi-spine/runtime-4.1": "PIXI.spine41",
+      "@pixi-spine/runtime-4.2": "PIXI.spine42",
       "@pixi-spine/loader-base": "PIXI.spine",
       "@pixi-spine/loader-uni": "PIXI.spine"
     }
@@ -30,18 +31,17 @@
     "@pixi-spine/base": "^4.0.4",
     "@pixi-spine/loader-base": "^4.0.4",
     "@pixi-spine/loader-uni": "^4.0.4",
-    "@pixi-spine/runtime-3.7": "^4.0.4",
-    "@pixi-spine/runtime-3.8": "^4.0.4",
-    "@pixi-spine/runtime-4.0": "^4.0.4",
-    "@pixi-spine/runtime-4.1": "^4.0.4"
+    "@pixi-spine/runtime-4.1": "^4.0.4",
+    "@pixi-spine/runtime-4.2": "^4.0.4"
   },
   "scripts": {
     "build": "run-p build:*",
     "build:rollup": "rollup -c rollup.config.mjs --silent",
     "build:types": "rimraf compile && tsc -p tsconfig-api.json && api-extractor run",
-    "clean": "rimraf lib dist compile index.d.ts",
+    "clean": "rimraf lib dist compile index.d.ts *.tgz",
     "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint src/**/*.ts --fix"
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "testBundle": "npm run build && npm pack"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,5 @@
 import type { SkeletonData } from './SkeletonData';
-import type { IAnimationStateData, Map } from '@pixi-spine/base';
+import type { IAnimationStateData, StringMap } from '@pixi-spine/base';
 import type { Animation } from './Animation';
 
 /** Stores mix (crossfade) durations to be applied when {@link AnimationState} animations are changed.
@@ -9,7 +9,7 @@ export class AnimationStateData implements IAnimationStateData<SkeletonData, Ani
     /** The SkeletonData to look up animations when they are specified by name. */
     skeletonData: SkeletonData;
 
-    animationToMixTime: Map<number> = {};
+    animationToMixTime: StringMap<number> = {};
 
     /** The mix duration to use when no mix duration has been defined between two animations. */
     defaultMix = 0;

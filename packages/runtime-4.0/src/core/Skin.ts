@@ -3,7 +3,7 @@ import type { BoneData } from './BoneData';
 import type { ConstraintData } from './ConstraintData';
 import type { Skeleton } from './Skeleton';
 
-import type { Map, ISkin } from '@pixi-spine/base';
+import type { StringMap, ISkin } from '@pixi-spine/base';
 
 /** Stores an entry in the skin consisting of the slot index, name, and attachment
  * @public
@@ -22,7 +22,7 @@ export class Skin implements ISkin {
     /** The skin's name, which is unique across all skins in the skeleton. */
     name: string;
 
-    attachments = new Array<Map<Attachment>>();
+    attachments = new Array<StringMap<Attachment>>();
     bones = Array<BoneData>();
     constraints = new Array<ConstraintData>();
 

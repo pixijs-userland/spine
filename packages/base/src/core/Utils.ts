@@ -3,14 +3,6 @@ import type { ISkeleton } from './ISkeleton';
 /**
  * @public
  */
-
-export interface Map<T> {
-    [key: string]: T;
-}
-
-/**
- * @public
- */
 export interface StringMap<T> {
     [key: string]: T;
 }
@@ -89,6 +81,12 @@ export interface NumberArrayLike {
     readonly length: number;
     [n: number]: number;
 }
+
+/**
+ * @public
+ */
+export type IntArrayLike = Array<number> | Int16Array;
+
 
 /**
  * @public
@@ -193,6 +191,7 @@ export class Color {
 export class MathUtils {
     static PI = 3.1415927;
     static PI2 = MathUtils.PI * 2;
+    static invPI2 = 1 / MathUtils.PI2;
     static radiansToDegrees = 180 / MathUtils.PI;
     static radDeg = MathUtils.radiansToDegrees;
     static degreesToRadians = MathUtils.PI / 180;
@@ -211,6 +210,10 @@ export class MathUtils {
 
     static sinDeg(degrees: number) {
         return Math.sin(degrees * MathUtils.degRad);
+    }
+
+    static atan2Deg (y: number, x: number) {
+        return Math.atan2(y, x) * MathUtils.degRad;
     }
 
     static signum(value: number): number {
@@ -338,7 +341,7 @@ export class Utils {
         return array;
     }
 
-    static newShortArray(size: number): NumberArrayLike {
+    static newShortArray(size: number): IntArrayLike {
         if (Utils.SUPPORTS_TYPED_ARRAYS) {
             return new Int16Array(size);
         }

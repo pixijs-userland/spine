@@ -1,14 +1,14 @@
 import type { Attachment } from './attachments';
 import type { Skeleton } from './Skeleton';
 
-import type { Map, ISkin } from '@pixi-spine/base';
+import type { StringMap, ISkin } from '@pixi-spine/base';
 
 /**
  * @public
  */
 export class Skin implements ISkin {
     name: string;
-    attachments = new Array<Map<Attachment>>();
+    attachments = new Array<StringMap<Attachment>>();
 
     constructor(name: string) {
         if (name == null) throw new Error('name cannot be null.');

@@ -53,7 +53,7 @@ const spineTextureAtlasLoader: AssetExtension<RawAtlas | TextureAtlas, ISpineMet
                 reject = rej;
             });
 
-            // Retval is going to be a texture atlas. However we need to wait for it's callback to resolve this promise.
+            // Retval is going to be a texture atlas. However, we need to wait for its callback to resolve this promise.
             let retval;
             const resolveCallback = (newAtlas: TextureAtlas): void => {
                 if (!newAtlas) {
