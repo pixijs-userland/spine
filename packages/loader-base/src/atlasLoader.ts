@@ -14,6 +14,7 @@ const spineTextureAtlasLoader: AssetExtension<RawAtlas | TextureAtlas, ISpineMet
     // },
 
     loader: {
+        name: "loadAtlas",
         extension: {
             type: ExtensionType.LoadParser,
             priority: LoaderParserPriority.Normal,
