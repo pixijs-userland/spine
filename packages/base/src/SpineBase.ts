@@ -537,7 +537,9 @@ export abstract class SpineBase<
             this.lastTime = 0;
         }
 
-        Container.prototype.updateTransform.call(this);
+        if(!this._destroyed) {
+            Container.prototype.updateTransform.call(this);
+        }
     }
 
     /**
