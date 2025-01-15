@@ -95,13 +95,13 @@ const spineTextureAtlasLoader: AssetExtension<RawAtlas | TextureAtlas, ISpineMet
  * Ugly function to promisify the spine texture atlas loader function.
  * @public
  */
-export const makeSpineTextureAtlasLoaderFunctionFromPixiLoaderObject = (loader: Loader, atlasBasePath: string, imageMetadata: any) => {
+export const makeSpineTextureAtlasLoaderFunctionFromPixiLoaderObject = (loader: Loader, atlasBasePath: string, imageMetadata: any, imageURL?:string) => {
     return async (pageName: string, textureLoadedCallback: (tex: BaseTexture) => any): Promise<void> => {
         // const url = utils.path.join(...atlasBasePath.split(utils.path.sep), pageName); // Broken in upstream
 
         const url = utils.path.normalize([...atlasBasePath.split(utils.path.sep), pageName].join(utils.path.sep));
 
-        const texture = await loader.load<Texture>({ src: url, data: imageMetadata });
+        const texture = await loader.load<Texture>(imageURL? imageURL:{ src: url, data: imageMetadata });
 
         textureLoadedCallback(texture.baseTexture);
     };

@@ -1,10 +1,18 @@
 import { ISkeletonData, ISkeletonParser, TextureAtlas } from '@pixi-spine/base';
-import { AssetExtension, checkExtension, LoadAsset, Loader, LoaderParserPriority } from '@pixi/assets';
+import { AssetExtension, checkDataUrl, checkExtension, LoadAsset, Loader, LoaderParserPriority } from '@pixi/assets';
 import { BaseTexture, extensions, ExtensionType, settings, Texture, utils } from '@pixi/core';
 import { makeSpineTextureAtlasLoaderFunctionFromPixiLoaderObject } from './atlasLoader';
 
 type SPINEJSON = any;
 type SPINEBINARY = ArrayBuffer;
+
+const validJSONExtension = '.json';
+
+const validJSONMIME = 'application/json';
+
+const validAtlasMIMEs = ['application/octet-stream', 'text/plain'];
+
+const validImageMIMEs = ['image/jpeg', 'image/png'];
 
 function isJson(resource: unknown): resource is SPINEJSON {
     return resource.hasOwnProperty('bones');
@@ -55,7 +63,7 @@ export abstract class SpineLoaderAbstract<SKD extends ISkeletonData> {
 
                 // #region Parsing spine data
                 testParse(asset: unknown, options: LoadAsset): Promise<boolean> {
-                    const isJsonSpineModel = checkExtension(options.src, '.json') && isJson(asset);
+                    const isJsonSpineModel = checkDataUrl(options.src, validJSONMIME) || (checkExtension(options.src, validJSONExtension) && isJson(asset));
                     const isBinarySpineModel = checkExtension(options.src, '.skel') && isBuffer(asset);
 
                     // From 6.x loader. If the atlas is strictly false we bail
@@ -73,7 +81,7 @@ export abstract class SpineLoaderAbstract<SKD extends ISkeletonData> {
                         basePath += '/';
                     }
 
-                    const isJsonSpineModel = checkExtension(loadAsset.src, '.json') && isJson(asset);
+                    const isJsonSpineModel = checkDataUrl(loadAsset.src, validJSONMIME) || (checkExtension(loadAsset.src, validJSONExtension) && isJson(asset));
                     // const isBinarySpineModel = fileExt === 'slel' && isBuffer(asset);
 
                     let parser: ISkeletonParser = null;
@@ -101,8 +109,15 @@ export abstract class SpineLoaderAbstract<SKD extends ISkeletonData> {
                     }
 
                     // if for some odd reason, you dumped the text information of the atlas into the metadata...
-                    const textAtlas = metadata.atlasRawData;
+                    let textAtlas = metadata.atlasRawData;
 
+                    // Maybe you passed a data URL to instead of a path
+                    const isSpineAtlasFileURL = checkDataUrl(metadata.spineAtlasFile, validAtlasMIMEs);
+
+                    // If it's an URL then decode it and assign it to textAtlas
+                    if (isSpineAtlasFileURL) {
+                        textAtlas = atob(metadata.spineAtlasFile.split(',')[1]);
+                    }
                     if (textAtlas) {
                         let auxResolve = null;
                         let auxReject = null;
@@ -110,12 +125,17 @@ export abstract class SpineLoaderAbstract<SKD extends ISkeletonData> {
                             auxResolve = resolve;
                             auxReject = reject;
                         });
-                        const atlas = new TextureAtlas(textAtlas, makeSpineTextureAtlasLoaderFunctionFromPixiLoaderObject(loader, basePath, metadata.imageMetadata), (newAtlas) => {
-                            if (!newAtlas) {
-                                auxReject('Something went terribly wrong loading a spine .atlas file\nMost likely your texture failed to load.');
+                        const imageURL = typeof metadata.image === 'string' && checkDataUrl(metadata.image, validImageMIMEs) ? metadata.image : null;
+                        const atlas = new TextureAtlas(
+                            textAtlas,
+                            makeSpineTextureAtlasLoaderFunctionFromPixiLoaderObject(loader, basePath, metadata.imageMetadata, imageURL),
+                            (newAtlas) => {
+                                if (!newAtlas) {
+                                    auxReject('Something went terribly wrong loading a spine .atlas file\nMost likely your texture failed to load.');
+                                }
+                                auxResolve(atlas);
                             }
-                            auxResolve(atlas);
-                        });
+                        );
                         const textureAtlas = await atlasPromise;
 
                         return spineAdapter.parseData(parser, textureAtlas, dataToParse);
@@ -168,7 +188,7 @@ export interface ISpineMetadata {
     spineAtlas?: Partial<TextureAtlas>;
     // If you are going to download an .atlas file, you can specify an alias here for cache/future lookup
     spineAtlasAlias?: string[];
-    // If you want to use a custom .atlas file, you can specify the path here. **It must be a .atlas file or you need your own parser!**
+    // If you want to use a custom .atlas file or data URL, you can specify the path here. **It must be a .atlas file or you need your own parser!**
     spineAtlasFile?: string;
     // If for some reason, you have the raw text content of an .atlas file, and want to use it dump it here
     atlasRawData?: string;
@@ -178,6 +198,6 @@ export interface ISpineMetadata {
     imageMetadata?: any;
     // If you already have atlas pages loaded as pixi textures and want to use that to create the atlas, you can pass them here
     images?: Record<string, Texture | BaseTexture>;
-    // If your spine only uses one atlas page and you have it as a pixi texture, you can pass it here
-    image?: Texture | BaseTexture;
+    // If your spine only uses one atlas page and you have it as a pixi texture or data URL, you can pass it here
+    image?: Texture | BaseTexture | string;
 }
