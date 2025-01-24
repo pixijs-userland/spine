@@ -16,7 +16,7 @@ animation.state.addListener({
 
 animation.state.addAnimation(0, 'walk', true);
 animation.state.tracks[0].listener = { 
-    complete: function(trackEntry, count) { console.log('my track completed '+entry.loopsCount()+' times') }
+    complete: function(trackEntry, count) { console.log('my track completed '+trackEntry.loopsCount()+' times') }
 }
 
 ```
