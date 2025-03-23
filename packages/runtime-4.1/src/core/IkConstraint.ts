@@ -97,12 +97,8 @@ export class IkConstraint implements Updatable {
 
         switch (bone.data.transformMode) {
             case TransformMode.OnlyTranslation:
-                tx = targetX - bone.worldX;
-                ty = targetY - bone.worldY;
-                // TODO: possible bug in spine-ts runtime!
-                if (settings.yDown) {
-                    ty = -ty;
-                }
+                tx = (targetX - bone.worldX) * MathUtils.signum(skelX);
+                ty = (targetY - bone.worldY) * MathUtils.signum(skelY);
                 break;
             case TransformMode.NoRotationOrReflection:
                 const s = Math.abs(pa * pd - pb * pc) / (pa * pa + pc * pc);

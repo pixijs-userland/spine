@@ -1,6 +1,8 @@
 # pixi-spine
 
-Spine 3.7, 3.8, 4.0, 4.1 implementation for PixiJS. 
+Spine 3.7, 3.8, 4.0, 4.1 implementation for PixiJS v7. 
+
+For PixiJS v8 and spine 4.2 please look at [spine-v8 repo](https://github.com/pixijs/spine-v8)
 
 ### Versions Compatibility
 
@@ -9,7 +11,7 @@ Spine 3.7, 3.8, 4.0, 4.1 implementation for PixiJS.
 | v5.x - v6.x | v3.x |
 | v7.x | v4.x |
 
-For spine < 3.7 support is limited, but accepting PR's for `runtime-3.7` package.
+For spine < 3.7 support is limited.
 
 For previous versions of pixi refer to
 - [README in pixi6](https://github.com/pixijs-userland/spine/tree/pixi6/#readme)
