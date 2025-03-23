@@ -1,6 +1,6 @@
 {
   "name": "@pixi-spine/loader-uni",
-  "version": "4.0.3",
+  "version": "4.0.5",
   "description": "Pixi integration with EsotericSoftware Spine, big, contains all runtimes",
   "main": "lib/index.js",
   "module": "lib/index.mjs",

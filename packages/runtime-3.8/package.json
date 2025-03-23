@@ -1,6 +1,6 @@
 {
 	"name": "@pixi-spine/runtime-3.8",
-	"version": "4.0.3",
+	"version": "4.0.5",
 	"description": "Pixi runtime for spine 3.8 models",
 	"main": "lib/index.js",
 	"module": "lib/index.mjs",

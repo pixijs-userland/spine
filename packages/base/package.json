@@ -1,6 +1,6 @@
 {
   "name": "@pixi-spine/base",
-  "version": "4.0.3",
+  "version": "4.0.5",
   "description": "Base of pixi-spine integration, common files for spine runtimes of different versions",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
