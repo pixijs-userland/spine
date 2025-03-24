@@ -1,4 +1,4 @@
-import { TextureAtlas } from '@pixi-spine/base';
+import { TextureAtlas, settings as spine_settings } from '@pixi-spine/base';
 import { type AssetExtension, LoaderParserPriority, LoadAsset, Loader, checkExtension } from '@pixi/assets';
 import { BaseTexture, extensions, ExtensionType, settings, Texture, utils } from '@pixi/core';
 import type { ISpineMetadata } from './SpineLoaderAbstract';
@@ -105,7 +105,10 @@ export const makeSpineTextureAtlasLoaderFunctionFromPixiLoaderObject = (loader: 
             const texture = await loader.load<Texture>({ src: url, data: imageMetadata });
 
             textureLoadedCallback(texture.baseTexture);
-        } catch {
+        } catch (e) {
+            if (spine_settings.REPORT_TEXTURE_LOADER_ERROR) {
+                console.error('Spine: error in texture loader', e);
+            }
             textureLoadedCallback(null);
         }
     };

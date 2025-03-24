@@ -18,4 +18,8 @@ export const settings = {
      * past Spine.globalDelayLimit
      */
     GLOBAL_DELAY_LIMIT: 0,
+    /**
+     * shows error in console if atlas page loading somehow failed
+     */
+    REPORT_TEXTURE_LOADER_ERROR: true,
 };
