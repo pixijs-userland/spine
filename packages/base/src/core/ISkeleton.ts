@@ -199,6 +199,7 @@ export interface ISkeleton<SkeletonData extends ISkeletonData = ISkeletonData, B
     findSlot(slotName: string): Slot;
     findBoneIndex(boneName: string): number;
     findSlotIndex(slotName: string): number;
+    setSkin(newSkin: Skin | null): void;
     setSkinByName(skinName: string): void;
     setAttachment(slotName: string, attachmentName: string): void;
     getBounds(offset: Vector2, size: Vector2, temp: Array<number>): void;
