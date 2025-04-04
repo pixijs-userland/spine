@@ -10,6 +10,7 @@ import { SimpleMesh } from '@pixi/mesh-extras';
 import { Graphics } from '@pixi/graphics';
 import { settings } from './settings';
 import type { ISpineDebugRenderer } from './SpineDebugRenderer';
+import { Color } from '@pixi/color';
 
 const tempRgb = [0, 0, 0];
 
@@ -200,7 +201,7 @@ export abstract class SpineBase<
      * @default 0xFFFFFF
      */
     get tint(): number {
-        return utils.rgb2hex(this.tintRgb as any);
+        return Color.shared.setValue(Array.from(this.tintRgb)).toNumber();
     }
 
     set tint(value: number) {
@@ -325,7 +326,7 @@ export abstract class SpineBase<
                         tempRgb[0] = light[0] * slot.color.r * attColor.r;
                         tempRgb[1] = light[1] * slot.color.g * attColor.g;
                         tempRgb[2] = light[2] * slot.color.b * attColor.b;
-                        slot.currentSprite.tint = utils.rgb2hex(tempRgb);
+                        slot.currentSprite.tint = Color.shared.setValue(tempRgb).toNumber();
                     }
                     slot.currentSprite.blendMode = slot.blendMode;
                     break;
@@ -383,7 +384,7 @@ export abstract class SpineBase<
                         tempRgb[0] = light[0] * slot.color.r * attColor.r;
                         tempRgb[1] = light[1] * slot.color.g * attColor.g;
                         tempRgb[2] = light[2] * slot.color.b * attColor.b;
-                        slot.currentMesh.tint = utils.rgb2hex(tempRgb);
+                        slot.currentMesh.tint = Color.shared.setValue(tempRgb).toNumber();
                     }
                     slot.currentMesh.blendMode = slot.blendMode;
                     if (!slot.hackRegion) {
