@@ -3,6 +3,7 @@
 /// <reference path="../global.d.ts" />
 import '@pixi-spine/loader-base'; // Side effect install atlas loader
 import { SpineLoader } from './SpineLoader';
+export { SpineLoader };
 export * from './Spine';
 export * from './versions';
 
