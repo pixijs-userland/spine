@@ -1,7 +1,5 @@
 ### Changing Skins
 
-For spine 3.7, im not sure about 3.8:
-
 Once skins are defined in Spine, it's possible to change them in runtime. According to the Spine libraries:
 > If skin is already set, new skin can change only slots attached in old skin.
 
